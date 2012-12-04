@@ -1,0 +1,15 @@
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\bin\Debug\DatabaseFiller.exe.config
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\bin\Debug\ZetkoDatabase.sdf
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\bin\Debug\DatabaseFiller.exe
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\bin\Debug\DatabaseFiller.pdb
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller.csprojResolveAssemblyReference.cache
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\MainWindow.baml
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\MainWindow.g.cs
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\App.g.cs
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller_Content.g.cs
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller_MarkupCompile.cache
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller.g.resources
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller.Properties.Resources.resources
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller.csproj.GenerateResource.Cache
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller.exe
+C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller.pdb

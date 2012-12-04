@@ -1,0 +1,92 @@
+﻿<Window x:Class="DatabaseFiller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="591.667" ResizeMode="NoResize">
+    <TabControl HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="582">
+        <TabItem Header="Vozilo-Stanica" HorizontalAlignment="Left" Width="149" Margin="-2,-2,-97,0">
+            <Grid Background="#FFE5E5E5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="157"/>
+                    <ColumnDefinition Width="328"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="46*"/>
+                    <RowDefinition Height="51*"/>
+                </Grid.RowDefinitions>
+                <DataGrid HorizontalAlignment="Right" Margin="0,10,10,10" Width="556" Grid.ColumnSpan="3"/>
+                <TextBlock Margin="32,21,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" HorizontalAlignment="Left" Width="60" Grid.ColumnSpan="2"><Run Language="en-gb" Text="Broj Linije:"/></TextBlock>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,18,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Margin="32,48,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" Height="16" RenderTransformOrigin="0.747,1.271" Grid.ColumnSpan="2"><Run Language="en-gb" Text="Stanica Id:"/></TextBlock>
+                <Button Content="Dodaj" Grid.Column="1" HorizontalAlignment="Left" Margin="10,116,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="20"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Margin="23,75,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Height="16" RenderTransformOrigin="0.747,1.271" Grid.ColumnSpan="2"><Run Language="en-gb" Text="Polaziste Id:"/></TextBlock>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,74,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Margin="156,75,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" Height="16" RenderTransformOrigin="0.747,1.271" Grid.Column="1" Grid.ColumnSpan="2"><Run Language="en-gb" Text="TimeOffset:"/></TextBlock>
+                <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="75,74,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Polazno Vrijeme" HorizontalAlignment="Left" Width="149" Margin="-2,-2,-97,0">
+            <Grid Background="#FFE5E5E5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="57*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                <DataGrid HorizontalAlignment="Right" Margin="0,10,10,10" Width="556" Grid.ColumnSpan="2"/>
+                <TextBlock Margin="23,21,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" HorizontalAlignment="Left" Width="69"><Run Language="en-gb" Text="Polaziste Id:"/></TextBlock>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,18,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Margin="43,48,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="16" RenderTransformOrigin="0.747,1.271"><Run Language="en-gb" Text="Vrijeme:"/></TextBlock>
+                <Button Content="Dodaj" Grid.Column="1" HorizontalAlignment="Left" Margin="10,83,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="20"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBlock Margin="157,21,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" HorizontalAlignment="Left" Width="69" Grid.Column="1"><Run Language="en-gb" Text="Broj Linije:"/></TextBlock>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="222,18,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Stanice" HorizontalAlignment="Left" Width="141" Margin="-2,-2,-85,0">
+            <Grid Background="#FFE5E5E5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="89*"/>
+                    <ColumnDefinition Width="487*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="173*"/>
+                    <RowDefinition Height="118*"/>
+                </Grid.RowDefinitions>
+                <DataGrid HorizontalAlignment="Right" Margin="0,10,10,10" Width="556" Grid.ColumnSpan="2"/>
+                <TextBlock Margin="14,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" HorizontalAlignment="Left" Width="72"><Run Language="en-gb" Text="Naziv stanice:"/></TextBlock>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,18,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Margin="63,48,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="29" Height="16" RenderTransformOrigin="0.747,1.271" Grid.ColumnSpan="2"><Run Language="en-gb" Text="Lon:"/></TextBlock>
+                <Button Content="Dodaj" Grid.Column="1" HorizontalAlignment="Left" Margin="10,82,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="20"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Margin="152,48,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="29" Height="16" RenderTransformOrigin="0.747,1.271" Grid.Column="1"><Run Language="en-gb" Text="Alt:"/></TextBlock>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="182,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Vozila" HorizontalAlignment="Left" Width="135" Margin="-2,-2,-13,0">
+            <Grid Background="#FFE5E5E5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="97*"/>
+                    <ColumnDefinition Width="479*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="176*"/>
+                    <RowDefinition Height="115*"/>
+                </Grid.RowDefinitions>
+                <DataGrid HorizontalAlignment="Right" Margin="0,10,10,8" Width="556" Grid.ColumnSpan="2"/>
+                <TextBlock Margin="31,20,11,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Language="en-gb" Text="Broj Linije:"/></TextBlock>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,18,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Margin="32,48,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Grid.ColumnSpan="2" Height="16"><Run Language="en-gb" Text="Tip Vozila:"/></TextBlock>
+                <Button Content="Dodaj" Grid.Column="1" HorizontalAlignment="Left" Margin="10,79,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="20"/>
+                <RadioButton Content="Tramvaj" Grid.Column="1" HorizontalAlignment="Left" Margin="12,49,0,0" Grid.Row="1" VerticalAlignment="Top" Height="15" Width="61"/>
+                <RadioButton Content="Autobus" Grid.Column="1" HorizontalAlignment="Left" Margin="85,49,0,0" Grid.Row="1" VerticalAlignment="Top" Height="15" Width="64"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+
+
+</Window>
