@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlServerCe;
 using System.Windows;
+using System.Windows.Controls;
+using DatabaseFiller.Properties;
 
 namespace DatabaseFiller
 {
@@ -19,6 +21,16 @@ namespace DatabaseFiller
 
         public MainWindow()
         {
+            var id = (int)Settings.Default["Id"];
+
+            while(id == -1)
+            {
+                new Dialog().ShowDialog();
+                id = (int)Settings.Default["Id"];
+            }
+
+
+            //Settings.Default.Save(); // Saves settings in application configuration file
             InitializeComponent();
             ConnectToDatabase();
             LoadData();
@@ -76,6 +88,17 @@ namespace DatabaseFiller
                 errorMessage += ++errorNum + ": Error parsing 'Broj linije' field.\n";
             }
 
+            string indexText = StationVehicle_Index.Text;
+            int index = 0;
+
+            try
+            {
+                index = int.Parse(indexText);
+            }
+            catch
+            {
+                errorMessage += ++errorNum + ": Error parsing 'Redni broj' field.\n";
+            }
 
             string stationIdText = StationVehicle_StanicaId.Text;
             int stationId = 0;
@@ -95,8 +118,6 @@ namespace DatabaseFiller
             }
 
             
-
-
             string polazisteIdText = StationVehicle_PolazisteId.Text;
             int polazisteId = 0;
 
@@ -115,8 +136,6 @@ namespace DatabaseFiller
             }
 
             
-
-
             string timeOffsetText = StationVehicle_TimeOffset.Text;
             int timeOffset = 0;
 
@@ -137,7 +156,7 @@ namespace DatabaseFiller
 
             else
             {
-                _dao.AddStationVehicleContext(new StationVehicleContext(stationId, voziloId, polazisteId, timeOffset));
+                _dao.AddStationVehicleContext(new StationVehicleContext(stationId, voziloId, polazisteId, timeOffset, index));
                 LoadData();
 
             }
@@ -265,6 +284,13 @@ namespace DatabaseFiller
                 errorMessage += ++errorNum + ": Error parsing 'Name' field.\n";
             }
 
+            string direction = Station_Direction.Text;
+
+            if (direction == null || direction.Trim().Equals(""))
+            {
+                errorMessage += ++errorNum + ": Error parsing 'Smjer' field.\n";
+            }
+
             if (errorNum > 0)
             {
                 MessageBox.Show(errorMessage);
@@ -272,9 +298,8 @@ namespace DatabaseFiller
 
             else
             {
-                _dao.AddStation(new Station(altitude, longitude, name));
+                _dao.AddStation(new Station(altitude, longitude, name, direction));
                 LoadData();
-
             }
 
 
@@ -367,7 +392,13 @@ namespace DatabaseFiller
             LoadData();
         }
 
+
         #endregion
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new Dialog().ShowDialog();
+        }
 
 
     }

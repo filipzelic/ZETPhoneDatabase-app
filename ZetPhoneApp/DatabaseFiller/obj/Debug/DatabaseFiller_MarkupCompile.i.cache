@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\obj\Debug\
+C:\Local\Repositories\ProjectZ\projectz\ZetPhoneApp\DatabaseFiller\obj\Debug\
 DatabaseFiller
 none
 false
 DEBUG;TRACE
-C:\Local\Repositories\ProjectZ\ZetPhoneApp\DatabaseFiller\App.xaml
-11151548125
+C:\Local\Repositories\ProjectZ\projectz\ZetPhoneApp\DatabaseFiller\App.xaml
+2-1571593986
 1-956719426
-11-641342264
+12-1659587693
 13-1473994552
-MainWindow.xaml;
+Dialog.xaml;MainWindow.xaml;
 
 False
 

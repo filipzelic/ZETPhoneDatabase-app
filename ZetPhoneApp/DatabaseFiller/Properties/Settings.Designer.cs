@@ -32,5 +32,17 @@ namespace DatabaseFiller.Properties {
                 return ((string)(this["ZetkoDatabaseConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int Id {
+            get {
+                return ((int)(this["Id"]));
+            }
+            set {
+                this["Id"] = value;
+            }
+        }
     }
 }

@@ -15,14 +15,16 @@ namespace DatabaseFiller
         public int VoziloId { get; set; }
         public int PolazisnaStanicaId { get; set; }
         public int TimeOffset { get; set; }
+        public int Index { get; set; }
 
 
-        public StationVehicleContext(int stanicaId, int voziloId, int polazisnaStanicaId, int timeOffset)
+        public StationVehicleContext(int stanicaId, int voziloId, int polazisnaStanicaId, int timeOffset, int index)
         {
             StanicaId = stanicaId;
             VoziloId = voziloId;
             PolazisnaStanicaId = polazisnaStanicaId;
             TimeOffset = timeOffset;
+            Index = index;
         }
     }
 }

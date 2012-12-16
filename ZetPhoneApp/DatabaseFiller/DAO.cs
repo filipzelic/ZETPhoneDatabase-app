@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlServerCe;
 using System.Linq;
 using System.Text;
+using DatabaseFiller.Properties;
 
 namespace DatabaseFiller
 {
@@ -42,6 +43,26 @@ namespace DatabaseFiller
         }
         #endregion
 
+        int CalculateMaxId(string tableName)
+        {
+            var result = 0;
+            using (var com = new SqlCeCommand("SELECT MAX(Id) as MaxId FROM  " + tableName, _connection))
+            {
+                SqlCeDataReader reader = com.ExecuteReader();
+                if (reader.Read())
+                {
+                        if(reader.IsDBNull(0) )
+                        {
+                            return 0;
+                        }
+
+                }
+                result = reader.GetInt32(0);
+
+            }
+            return result;
+        }
+
         public Vehicle FetchVehicle(int lineNumber)
         {
             using (var com = new SqlCeCommand("SELECT * FROM Vozila WHERE LineNumber = " + lineNumber, _connection))
@@ -72,13 +93,13 @@ namespace DatabaseFiller
                 if (reader.Read())
                 {
                     var id = reader.GetInt32(0);
-                    var alt = (float)reader.GetDouble(1);
-                    var lon = (float)reader.GetDouble(2);
+                    var alt = reader.GetFloat(1);
+                    var lon = reader.GetFloat(2);
                     var name = reader.GetString(3);
-                    return new Station(alt, lon, name) { Id = id };
+                    var direction = reader.GetString(4);
+                    return new Station(alt, lon, name, direction) { Id = id };
                 }
                 return null;
-
             }
         }
 
@@ -113,10 +134,11 @@ namespace DatabaseFiller
                 while (reader.Read())
                 {
                     var id = reader.GetInt32(0);
-                    var alt = (float) reader.GetDouble(1);
-                    var lon = (float) reader.GetDouble(2);
+                    var alt = (float) reader.GetFloat(1);
+                    var lon = (float) reader.GetFloat(2);
                     var name = reader.GetString(3);
-                    stanice.Add(new Station(alt, lon, name) { Id = id });
+                    var direction = reader.GetString(4);
+                    stanice.Add(new Station(alt, lon, name, direction) { Id = id });
                 }
             }
 
@@ -137,7 +159,8 @@ namespace DatabaseFiller
                     var voziloId = reader.GetInt32(2);
                     var timeOffset = reader.GetInt32(3);
                     var polaznaStanicaId = reader.GetInt32(4);
-                    contextList.Add(new StationVehicleContext(stanicaId, voziloId, polaznaStanicaId, timeOffset) { Id = id });
+                    var index = reader.GetInt32(5);
+                    contextList.Add(new StationVehicleContext(stanicaId, voziloId, polaznaStanicaId, timeOffset, index) { Id = id });
                 }
             }
 
@@ -168,11 +191,15 @@ namespace DatabaseFiller
         public bool AddStation(Station s)
         {
             int rows;
-            using (var com = new SqlCeCommand("INSERT INTO Stanice (Altitude, Longitude, Name) VALUES(@Altitude, @Longitude, @Name)", _connection))
+            using (var com = new SqlCeCommand("INSERT INTO Stanice (Id, Altitude, Longitude, Name, Direction) VALUES(@id, @Altitude, @Longitude, @Name, @Direction)", _connection))
             {
+                int nextId = CalculateMaxId("Stanice") + 1;
+                s.Id = nextId < (int) Settings.Default["Id"] ? (int) Settings.Default["Id"] : nextId;
+                com.Parameters.AddWithValue("@Id", s.Id);
                 com.Parameters.AddWithValue("@Altitude", s.Altitude);
                 com.Parameters.AddWithValue("@Longitude", s.Longitude);
                 com.Parameters.AddWithValue("@Name", s.Name);
+                com.Parameters.AddWithValue("@Direction", s.Direction);
                 rows = com.ExecuteNonQuery();
             }
 
@@ -183,14 +210,16 @@ namespace DatabaseFiller
         public bool AddVehicle(Vehicle v)
         {
             int rows;
-            using (var com = new SqlCeCommand("INSERT INTO Vozila (LineNumber, Type) VALUES(@LineNumber, @Type)", _connection))
+            using (var com = new SqlCeCommand("INSERT INTO Vozila (Id, LineNumber, Type) VALUES(@Id, @LineNumber, @Type)", _connection))
             {
+                int nextId = CalculateMaxId("Vozila") + 1;
+                v.Id = nextId < (int)Settings.Default["Id"] ? (int)Settings.Default["Id"] : nextId;
 
+                com.Parameters.AddWithValue("@Id", v.Id);
                 com.Parameters.AddWithValue("@LineNumber", v.LineNumber);
                 com.Parameters.AddWithValue("@Type", v.Type);
                 rows = com.ExecuteNonQuery();
             }
-
             return rows > 0;
         }
 
@@ -198,13 +227,18 @@ namespace DatabaseFiller
         public bool AddStationVehicleContext(StationVehicleContext sv)
         {
             int rows;
-            using (var com = new SqlCeCommand("INSERT INTO StanicaVoziloSet (StanicaId, VoziloId, TimeOffset, PolazisnaStanicaId)" +
-                                              " VALUES(@StanicaId, @VoziloId, @TimeOffset, @PolazisnaStanicaId)", _connection))
+            using (var com = new SqlCeCommand("INSERT INTO StanicaVoziloSet (Id, StanicaId, VoziloId, TimeOffset, PolazisnaStanicaId, Indeks)" +
+                                              " VALUES(@Id, @StanicaId, @VoziloId, @TimeOffset, @PolazisnaStanicaId, @Indeks)", _connection))
             {
+                int nextId = CalculateMaxId("StanicaVoziloSet") + 1;
+                sv.Id = nextId < (int)Settings.Default["Id"] ? (int)Settings.Default["Id"] : nextId;
+
+                com.Parameters.AddWithValue("@Id", sv.Id);
                 com.Parameters.AddWithValue("@StanicaId", sv.StanicaId);
                 com.Parameters.AddWithValue("@VoziloId", sv.VoziloId);
                 com.Parameters.AddWithValue("@TimeOffset", sv.TimeOffset);
                 com.Parameters.AddWithValue("@PolazisnaStanicaId", sv.PolazisnaStanicaId);
+                com.Parameters.AddWithValue("@Indeks", sv.Index);
                 rows = com.ExecuteNonQuery();
             }
 
@@ -214,9 +248,13 @@ namespace DatabaseFiller
         public bool AddDepartureTimeContext(DepartureTimeContext vp)
         {
             int rows;
-            using (var com = new SqlCeCommand("INSERT INTO VrijemePolaska (StanicaId, VoziloId, VrijemePolaska, Dan) " +
-                                              "VALUES(@StanicaId, @VoziloId, @VrijemePolaska, @Dan)", _connection))
+            using (var com = new SqlCeCommand("INSERT INTO VrijemePolaska (Id, StanicaId, VoziloId, VrijemePolaska, Dan) " +
+                                              "VALUES(@Id, @StanicaId, @VoziloId, @VrijemePolaska, @Dan)", _connection))
             {
+                int nextId = CalculateMaxId("VrijemePolaska") + 1;
+                vp.Id = nextId < (int)Settings.Default["Id"] ? (int)Settings.Default["Id"] : nextId;
+
+                com.Parameters.AddWithValue("@Id", vp.Id);
                 com.Parameters.AddWithValue("@StanicaId", vp.StanicaId);
                 com.Parameters.AddWithValue("@VoziloId", vp.VoziloId);
                 com.Parameters.AddWithValue("@VrijemePolaska", vp.Time);
