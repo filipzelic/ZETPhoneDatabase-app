@@ -27,3 +27,4 @@ C:\Local\Repositories\ProjectZ\projectz\ZetPhoneApp\DatabaseFiller\obj\Debug\Dat
 C:\Local\Repositories\ProjectZ\projectz\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller.csproj.GenerateResource.Cache
 C:\Local\Repositories\ProjectZ\projectz\ZetPhoneApp\DatabaseFiller\obj\Debug\Dialog.baml
 C:\Local\Repositories\ProjectZ\projectz\ZetPhoneApp\DatabaseFiller\obj\Debug\Dialog.g.cs
+C:\Local\Repositories\ProjectZ\projectz\ZetPhoneApp\DatabaseFiller\obj\Debug\DatabaseFiller.csprojResolveAssemblyReference.cache

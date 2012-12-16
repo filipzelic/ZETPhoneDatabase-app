@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlServerCe;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using DatabaseFiller.Properties;
 
 namespace DatabaseFiller
@@ -30,7 +32,6 @@ namespace DatabaseFiller
             }
 
 
-            //Settings.Default.Save(); // Saves settings in application configuration file
             InitializeComponent();
             ConnectToDatabase();
             LoadData();
@@ -392,14 +393,76 @@ namespace DatabaseFiller
             LoadData();
         }
 
-
-        #endregion
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             new Dialog().ShowDialog();
         }
 
 
+
+        #endregion
+
+        private void DepartureTimeSelected(object sender, MouseButtonEventArgs e)
+        {
+            var selected = (DepartureTimeContext)DepartureTime_Grid.SelectedItem;
+            var firstOrDefault = _dao.FetchVehicles().FirstOrDefault(s => s.Id == selected.VoziloId);
+            if (firstOrDefault != null)
+                DepartureTime_LineNumber.Text = firstOrDefault.LineNumber + "";
+            DepartureTime_Time.Text = selected.Time;
+            DepartureTime_PolazisteId.Text = selected.StanicaId + "";
+            if (selected.DayStatus.Equals("Radni"))
+                DepartureTime_Radni.IsChecked = true;
+            else if (selected.DayStatus.Equals("Subota"))
+                DepartureTime_Subota.IsChecked = true;
+            else
+            {
+                DepartureTime_Nedjelja.IsChecked = true;
+            }
+        }
+
+        private void StationVehicleSelected(object sender, MouseButtonEventArgs e)
+        {
+            var selected = (StationVehicleContext)StationVehicle_Grid.SelectedItem;
+            StationVehicle_Index.Text = selected.Index + "";
+            var firstOrDefault = _dao.FetchVehicles().FirstOrDefault(s => s.Id == selected.VoziloId);
+            if (firstOrDefault != null)
+                StationVehicle_LineNumber.Text =firstOrDefault.LineNumber + "";
+            StationVehicle_PolazisteId.Text = selected.PolazisnaStanicaId + "";
+            StationVehicle_StanicaId.Text = selected.StanicaId + "";
+            StationVehicle_TimeOffset.Text = selected.TimeOffset + "";
+
+        }
+
+        private void StationSelected(object sender, MouseButtonEventArgs e)
+        {
+            var selected = (Station)Station_Grid.SelectedItem;
+            Station_Longitude.Text = selected.Longitude + "";
+            Station_Altitude.Text = selected.Altitude + "";
+            Station_Direction.Text = selected.Direction + "";
+            Station_Name.Text = selected.Name;
+
+        }
+
+        private void VehicleItemSelected(object sender, MouseButtonEventArgs e)
+        {
+            var selected = (Vehicle)Vehicle_Grid.SelectedItem;
+            Vehicle_LineNumber.Text = selected.LineNumber + "";
+            if (selected.Type.Equals("Tramvaj"))
+                Vehicle_Tramvaj.IsChecked = true;
+            else
+            {
+                Vehicle_Autobus.IsChecked = true;
+            }
+        }
+
+        private void UpdateStationVehicleButtonClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ResetSelection(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
