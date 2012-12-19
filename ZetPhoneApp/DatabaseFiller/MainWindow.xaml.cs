@@ -255,11 +255,11 @@ namespace DatabaseFiller
 
 
             string altitudeText = Station_Altitude.Text;
-            float altitude = 0;
+            double altitude = 0;
 
             try
             {
-                altitude = (float) Double.Parse(altitudeText);
+                altitude = Double.Parse(altitudeText);
             }
             catch
             {
@@ -267,11 +267,11 @@ namespace DatabaseFiller
             }
 
             string longitudeText = Station_Longitude.Text;
-            float longitude = 0;
+            double longitude = 0;
 
             try
             {
-                longitude = (float) Double.Parse(longitudeText);
+                longitude = Double.Parse(longitudeText);
             }
             catch 
             {
@@ -440,6 +440,7 @@ namespace DatabaseFiller
             Station_Altitude.Text = selected.Altitude + "";
             Station_Direction.Text = selected.Direction + "";
             Station_Name.Text = selected.Name;
+            StationId.Text = selected.Id + "";
 
         }
 

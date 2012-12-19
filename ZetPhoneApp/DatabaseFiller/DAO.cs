@@ -63,6 +63,7 @@ namespace DatabaseFiller
             return result;
         }
 
+        #region dohvacanjepodataka
         public Vehicle FetchVehicle(int lineNumber)
         {
             using (var com = new SqlCeCommand("SELECT * FROM Vozila WHERE LineNumber = " + lineNumber, _connection))
@@ -93,8 +94,8 @@ namespace DatabaseFiller
                 if (reader.Read())
                 {
                     var id = reader.GetInt32(0);
-                    var alt = reader.GetFloat(1);
-                    var lon = reader.GetFloat(2);
+                    var alt = (double)reader.GetDecimal(1);
+                    var lon = (double)reader.GetDecimal(2);
                     var name = reader.GetString(3);
                     var direction = reader.GetString(4);
                     return new Station(alt, lon, name, direction) { Id = id };
@@ -134,8 +135,8 @@ namespace DatabaseFiller
                 while (reader.Read())
                 {
                     var id = reader.GetInt32(0);
-                    var alt = (float) reader.GetFloat(1);
-                    var lon = (float) reader.GetFloat(2);
+                    var alt = (double)reader.GetDecimal(1);
+                    var lon = (double)reader.GetDecimal(2);
                     var name = reader.GetString(3);
                     var direction = reader.GetString(4);
                     stanice.Add(new Station(alt, lon, name, direction) { Id = id });
@@ -187,7 +188,8 @@ namespace DatabaseFiller
 
             return contextList;
         }
-
+        #endregion
+        #region dodavanjepodataka
         public bool AddStation(Station s)
         {
             int rows;
@@ -264,6 +266,7 @@ namespace DatabaseFiller
 
             return rows > 0;
         }
+        #endregion
 
         public bool DeleteStation(int stanicaId)
         {

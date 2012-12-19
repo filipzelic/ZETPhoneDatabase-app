@@ -49,14 +49,16 @@
                     <DataGrid x:Name="Station_Grid" Margin="8,8,9.667,0" VerticalAlignment="Top" Height="200" IsReadOnly="True" MouseDoubleClick="StationSelected"/>
                     <TextBox x:Name="Station_Name" HorizontalAlignment="Left" Margin="92.332,0,0,107.08" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150" />
                     <TextBlock HorizontalAlignment="Left" Margin="8,0,0,108.08" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Language="en-gb" Text="Naziv stanice:"/></TextBlock>
-                    <TextBox x:Name="Station_Longitude" HorizontalAlignment="Left" Margin="92.332,0,0,85.12" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="8,0,0,86.12" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Language="en-gb" Text="Longitude:"/></TextBlock>
-                    <TextBox x:Name="Station_Altitude" HorizontalAlignment="Left" Margin="92.332,0,0,63.16" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="8,0,0,63.91" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Language="en-gb" Text="Altitude:"/></TextBlock>
+                    <TextBox x:Name="Station_Altitude" HorizontalAlignment="Left" Margin="92.332,0,0,85.12" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="8,0,0,86.12" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Language="en-gb" Text="Altitude:"/></TextBlock>
+                    <TextBox x:Name="Station_Longitude" HorizontalAlignment="Left" Margin="92.332,0,0,63.16" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="8,0,0,63.91" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Language="en-gb" Text="Longitude:"/></TextBlock>
                     <Button Content="Dodaj Zapis" Click="AddStationButtonClick" HorizontalAlignment="Left" Margin="8,0,0,8" VerticalAlignment="Bottom" Width="75"/>
                     <Button Content="Obriši označeni" HorizontalAlignment="Left" Margin="92.332,0,0,8" VerticalAlignment="Bottom" Width="150" Click="DeleteStationButtonClick"/>
                     <TextBox x:Name="Station_Direction" HorizontalAlignment="Left" Margin="92,0,0,40.04" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150"/>
                     <TextBlock HorizontalAlignment="Left" Margin="8,0,0,41.04" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Language="en-gb" Text="Smjer:"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="415,0,0,107.04" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Text="Info id"/><Run Language="en-gb" Text=":"/></TextBlock>
+                    <TextBox x:Name="StationId" HorizontalAlignment="Left" Margin="467,0,0,105.04" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="ada" Header="Vozila">
