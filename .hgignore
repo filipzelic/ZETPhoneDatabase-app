@@ -1,0 +1,16 @@
+syntax: glob
+
+# VISUAL STUDIO
+
+*.obj
+*.pdb
+*.suo
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+
+# TEMPORARY FILES
+
+*.log
+*.bak
+*.cache  
